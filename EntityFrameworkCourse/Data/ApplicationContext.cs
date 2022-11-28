@@ -11,7 +11,7 @@ namespace EntityFrameworkCourse.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Trazer de alguma configuração externa, NÃO deixar hardcode
-            const string connectionString = "Server=localhost; Database=EntityFramework; User Id=sa; Password=Cerc@tr0va-sqlserver;";
+            const string connectionString = "Server=localhost; Database=EntityFramework; TrustServerCertificate=True; User Id=sa; Password=Cerc@tr0va-sqlserver;";
 
             optionsBuilder
                 // Estaremos utilizando Sql Server na seguinte connection String
