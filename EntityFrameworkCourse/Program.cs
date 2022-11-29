@@ -32,4 +32,21 @@ static void EnsureCreated()
     // databaseCreator.CreateTables();
 }
 
+static void ExecuteSql()
+{
+    using var db = new ApplicationContext();
 
+    // Primeira opção
+    using (var cmd = db.Database.GetDbConnection().CreateCommand())
+    {
+        cmd.CommandText = "SELECT 1";
+        cmd.ExecuteNonQuery();
+    }
+
+    // Segunda opção com DbParameters evitando SQL Injection
+    var description = "TESTE";
+    db.Database.ExecuteSqlRaw("UPDATE Departments SET Description = {0} WHERE Id = 1", description);
+
+    // Terceira opção
+    db.Database.ExecuteSqlInterpolated($"UPDATE Departments SET Description = {description} WHERE Id = 1");
+}
