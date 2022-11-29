@@ -17,5 +17,10 @@ namespace EntityFrameworkCourse.Data
                 // Estaremos utilizando Sql Server na seguinte connection String
                 .UseSqlServer(connectionString);
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Department>().HasQueryFilter(p => !p.IsActive);
+        }
     }
 }
